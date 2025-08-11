@@ -1,0 +1,28 @@
+# Fichiers système macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Fichiers temporaires
+*.tmp
+*.temp
+*.log
+
+# Fichiers de configuration locaux
+.env
+.env.local
+.env.production
+
+# Dossiers de build
+dist/
+build/
+node_modules/
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+*~ 
