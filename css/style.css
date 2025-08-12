@@ -272,6 +272,8 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     margin: 0 auto 1.5rem;
     transition: var(--transition);
+    background: none;
+    border: none;
 }
 
 .service-icon img {
@@ -280,6 +282,8 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: contain;
     display: block;
     margin: 0 auto;
+    background: transparent;
+    border-radius: 0;
 }
 
 .service-card:hover .service-icon {
