@@ -285,9 +285,8 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: contain;
     border-radius: 50%;
     display: block;
-    max-width: 100%;
-    height: auto;
     background: white;
+    padding: 5px;
 }
 
 .service-card:hover .service-icon {
