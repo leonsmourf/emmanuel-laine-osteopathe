@@ -134,6 +134,14 @@ async function initMap() {
     const mapElement = document.getElementById('map');
     if (!mapElement) {
         console.error('Map element not found');
+        showMapFallback();
+        return;
+    }
+    
+    // Check if Google Maps is available
+    if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
+        console.error('Google Maps not loaded');
+        showMapFallback();
         return;
     }
     
@@ -471,17 +479,24 @@ function showMapFallback() {
     const mapContainer = document.getElementById('map');
     if (mapContainer) {
         mapContainer.innerHTML = `
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f8f9fa; color: #666; border-radius: 8px;">
-                <div style="text-align: center;">
-                    <i class="fas fa-map-marker-alt" style="font-size: 3rem; margin-bottom: 1rem; color: #000;"></i>
-                    <h5 style="color: #000; margin-bottom: 1rem;">Cabinet Emmanuel Lainé</h5>
-                    <p style="margin-bottom: 0.5rem;"><strong>Adresse :</strong></p>
-                    <p style="margin-bottom: 1rem;">7 rue Coëtlogon<br>75006 Paris</p>
-                    <a href="https://maps.google.com/?q=7+rue+Coëtlogon,+75006+Paris" 
-                       target="_blank" 
-                       class="btn btn-primary btn-sm">
-                        <i class="fas fa-external-link-alt me-2"></i>Voir sur Google Maps
-                    </a>
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #666; border-radius: 8px; border: 2px solid #dee2e6;">
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 4rem; margin-bottom: 1.5rem; color: #000;"></i>
+                    <h4 style="color: #000; margin-bottom: 1rem; font-weight: 600;">Cabinet Emmanuel Lainé</h4>
+                    <p style="margin-bottom: 0.5rem; font-weight: 500;"><strong>Adresse :</strong></p>
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">7 rue Coëtlogon<br>75006 Paris</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="https://maps.google.com/?q=7+rue+Coëtlogon,+75006+Paris" 
+                           target="_blank" 
+                           class="btn btn-primary">
+                            <i class="fas fa-external-link-alt me-2"></i>Voir sur Google Maps
+                        </a>
+                        <a href="https://www.google.com/maps/dir//7+rue+Coëtlogon,+75006+Paris" 
+                           target="_blank" 
+                           class="btn btn-outline-primary">
+                            <i class="fas fa-directions me-2"></i>Itinéraire
+                        </a>
+                    </div>
                 </div>
             </div>
         `;
