@@ -280,8 +280,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .service-icon i {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--secondary-color);
+    font-weight: 400;
+}
+
+.service-icon .fa-solid.fa-stomach {
+    font-size: 2.2rem;
+    transform: scale(1.1);
 }
 
 .service-card:hover .service-icon {
