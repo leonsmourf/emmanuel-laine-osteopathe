@@ -8,6 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAnimations();
     initializeSmoothScrolling();
     initializeContactForm();
+    
+    // Check if Google Maps is loaded
+    if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
+        console.warn('Google Maps not loaded, showing fallback');
+        setTimeout(showMapFallback, 1000);
+    } else {
+        // If Google Maps is already loaded, initialize map
+        setTimeout(initMap, 500);
+    }
 });
 
 // ===== NAVBAR FUNCTIONALITY =====
@@ -19,9 +28,9 @@ function initializeNavbar() {
     // Navbar background on scroll
     window.addEventListener('scroll', function() {
         if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+            navbar.style.background = '#000000';
         } else {
-            navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+            navbar.style.background = 'transparent';
         }
     });
 
@@ -116,44 +125,90 @@ function initializeSmoothScrolling() {
 }
 
 // ===== GOOGLE MAPS =====
-function initMap() {
+async function initMap() {
+    console.log('Initializing Google Maps...');
+    
     // Cabinet coordinates: 7 rue Coëtlogon, 75006 Paris
     const cabinetLocation = { lat: 48.8475, lng: 2.3322 }; // Approximate coordinates
     
-    // Create map
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: cabinetLocation,
-        styles: getMapStyles(), // Custom dark theme
-        mapTypeControl: false,
-        streetViewControl: false,
-        fullscreenControl: false
-    });
+    const mapElement = document.getElementById('map');
+    if (!mapElement) {
+        console.error('Map element not found');
+        return;
+    }
+    
+    try {
+        console.log('Creating Google Maps instance...');
+        // Create map
+        map = new google.maps.Map(mapElement, {
+            zoom: 17,
+            center: cabinetLocation,
+            styles: getMapStyles(), // Custom theme
+            mapTypeControl: true,
+            streetViewControl: true,
+            fullscreenControl: true,
+            zoomControl: true,
+            scrollwheel: false,
+            gestureHandling: 'cooperative'
+        });
+        console.log('Google Maps created successfully');
+    } catch (error) {
+        console.error('Error initializing Google Maps:', error);
+        showMapFallback();
+        return;
+    }
 
-    // Create marker
-    marker = new google.maps.Marker({
-        position: cabinetLocation,
-        map: map,
-        title: 'Cabinet Emmanuel Lainé - Ostéopathe',
-        icon: {
-            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
-                <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="20" cy="20" r="18" fill="#000000" stroke="#ffffff" stroke-width="2"/>
-                    <path d="M20 8 L20 32 M12 20 L28 20" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-            `),
-            scaledSize: new google.maps.Size(40, 40),
-            anchor: new google.maps.Point(20, 20)
-        }
-    });
+    // Create marker using new AdvancedMarkerElement (recommended)
+    try {
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+        
+        marker = new AdvancedMarkerElement({
+            position: cabinetLocation,
+            map: map,
+            title: 'Cabinet Emmanuel Lainé - Ostéopathe',
+            content: new google.maps.marker.PinElement({
+                background: '#000000',
+                borderColor: '#ffffff',
+                glyph: 'OSTÉO',
+                glyphColor: '#000000',
+                scale: 1.2
+            }).element
+        });
+    } catch (error) {
+        console.log('Using fallback marker...');
+        // Fallback to traditional marker
+        marker = new google.maps.Marker({
+            position: cabinetLocation,
+            map: map,
+            title: 'Cabinet Emmanuel Lainé - Ostéopathe',
+            icon: {
+                url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                    <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="25" r="22" fill="#000000" stroke="#ffffff" stroke-width="3"/>
+                        <path d="M25 10 L25 40 M15 25 L35 25" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+                        <text x="25" y="48" text-anchor="middle" fill="#000000" font-family="Arial" font-size="8" font-weight="bold">OSTÉO</text>
+                    </svg>
+                `),
+                scaledSize: new google.maps.Size(50, 50),
+                anchor: new google.maps.Point(25, 25)
+            }
+        });
+    }
 
     // Info window
     const infoWindow = new google.maps.InfoWindow({
         content: `
-            <div style="padding: 10px; max-width: 200px;">
-                <h5 style="margin: 0 0 5px 0; color: #000;">Emmanuel Lainé</h5>
-                <p style="margin: 0; color: #666;">Ostéopathe</p>
-                <p style="margin: 5px 0 0 0; color: #333;">7 rue Coëtlogon<br>75006 Paris</p>
+            <div style="padding: 15px; max-width: 250px; font-family: 'Inter', sans-serif;">
+                <h5 style="margin: 0 0 8px 0; color: #000; font-weight: 600; font-size: 16px;">Emmanuel Lainé</h5>
+                <p style="margin: 0 0 8px 0; color: #666; font-size: 14px;"><i class="fas fa-user-md"></i> Ostéopathe D.O.</p>
+                <p style="margin: 0 0 10px 0; color: #333; font-size: 14px;">
+                    <i class="fas fa-map-marker-alt" style="color: #000;"></i> 7 rue Coëtlogon<br>75006 Paris
+                </p>
+                <a href="https://maps.google.com/?q=7+rue+Coëtlogon,+75006+Paris" 
+                   target="_blank" 
+                   style="display: inline-block; background: #000; color: #fff; padding: 8px 12px; text-decoration: none; border-radius: 4px; font-size: 12px;">
+                    <i class="fas fa-directions"></i> Itinéraire
+                </a>
             </div>
         `
     });
@@ -395,9 +450,9 @@ const optimizedScrollHandler = throttle(function() {
     // Navbar scroll effect
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+        navbar.style.background = '#000000';
     } else {
-        navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+        navbar.style.background = 'transparent';
     }
 }, 16); // ~60fps
 
@@ -408,19 +463,30 @@ window.addEventListener('scroll', optimizedScrollHandler);
 // Handle Google Maps API errors
 window.gm_authFailure = function() {
     console.error('Google Maps API authentication failed');
+    showMapFallback();
+};
+
+// Fallback function for when Google Maps fails to load
+function showMapFallback() {
     const mapContainer = document.getElementById('map');
     if (mapContainer) {
         mapContainer.innerHTML = `
-            <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f8f9fa; color: #666;">
+            <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f8f9fa; color: #666; border-radius: 8px;">
                 <div style="text-align: center;">
                     <i class="fas fa-map-marker-alt" style="font-size: 3rem; margin-bottom: 1rem; color: #000;"></i>
-                    <h5>Cabinet Emmanuel Lainé</h5>
-                    <p>7 rue Coëtlogon<br>75006 Paris</p>
+                    <h5 style="color: #000; margin-bottom: 1rem;">Cabinet Emmanuel Lainé</h5>
+                    <p style="margin-bottom: 0.5rem;"><strong>Adresse :</strong></p>
+                    <p style="margin-bottom: 1rem;">7 rue Coëtlogon<br>75006 Paris</p>
+                    <a href="https://maps.google.com/?q=7+rue+Coëtlogon,+75006+Paris" 
+                       target="_blank" 
+                       class="btn btn-primary btn-sm">
+                        <i class="fas fa-external-link-alt me-2"></i>Voir sur Google Maps
+                    </a>
                 </div>
             </div>
         `;
     }
-};
+}
 
 // ===== ACCESSIBILITY IMPROVEMENTS =====
 

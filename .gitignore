@@ -1,28 +1,33 @@
-# Fichiers système macOS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Configuration files with sensitive data
+config.js
 
-# Fichiers temporaires
-*.tmp
-*.temp
-*.log
-
-# Fichiers de configuration locaux
+# Environment variables
 .env
 .env.local
 .env.production
 
-# Dossiers de build
-dist/
-build/
+# API Keys and secrets
+*.key
+api-keys.txt
+secrets.txt
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies
 node_modules/
 
-# Fichiers de sauvegarde
-*.bak
-*.backup
-*~ 
+# Build files
+dist/
+build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db 
