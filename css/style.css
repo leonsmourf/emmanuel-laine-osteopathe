@@ -267,25 +267,19 @@ h1, h2, h3, h4, h5, h6 {
 .service-icon {
     width: 80px;
     height: 80px;
-    background: var(--primary-color);
-    color: var(--secondary-color);
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    font-size: 2rem;
     transition: var(--transition);
-    overflow: hidden;
 }
 
 .service-icon img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     display: block;
     margin: 0 auto;
-    border-radius: 50%;
 }
 
 .service-card:hover .service-icon {
