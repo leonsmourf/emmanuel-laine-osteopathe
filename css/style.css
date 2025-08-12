@@ -279,14 +279,9 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 
-.service-icon img {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    border-radius: 50%;
-    display: block;
-    background: white;
-    padding: 5px;
+.service-icon i {
+    font-size: 2rem;
+    color: var(--secondary-color);
 }
 
 .service-card:hover .service-icon {
