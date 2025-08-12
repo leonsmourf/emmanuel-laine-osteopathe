@@ -481,7 +481,7 @@ function showMapFallback() {
         mapContainer.innerHTML = `
             <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); color: #666; border-radius: 8px; border: 2px solid #dee2e6;">
                 <div style="text-align: center; padding: 2rem;">
-                    <span style="font-size: 4rem; margin-bottom: 1.5rem;">📍</span>
+                    <i class="fas fa-map-marker-alt" style="font-size: 4rem; margin-bottom: 1.5rem; color: #000;"></i>
                     <h4 style="color: #000; margin-bottom: 1rem; font-weight: 600;">Cabinet Emmanuel Lainé</h4>
                     <p style="margin-bottom: 0.5rem; font-weight: 500;"><strong>Adresse :</strong></p>
                     <p style="margin-bottom: 1.5rem; font-size: 1.1rem;">7 rue Coëtlogon<br>75006 Paris</p>

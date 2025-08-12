@@ -284,6 +284,12 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--secondary-color);
     font-weight: 400;
     display: block;
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "FontAwesome";
+}
+
+.service-icon .fa-solid.fa-stomach {
+    font-size: 2.2rem;
+    transform: scale(1.1);
 }
 
 .service-card:hover .service-icon {
