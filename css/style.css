@@ -279,11 +279,13 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
 }
 
-.service-icon svg {
-    width: 50px;
-    height: 50px;
+.service-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
     display: block;
     margin: 0 auto;
+    border-radius: 50%;
 }
 
 .service-card:hover .service-icon {
