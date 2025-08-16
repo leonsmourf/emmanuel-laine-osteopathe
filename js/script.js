@@ -147,10 +147,10 @@ async function initMap() {
     
     try {
         console.log('Creating Google Maps instance...');
-        // Create map
+    // Create map
         map = new google.maps.Map(mapElement, {
             zoom: 17,
-            center: cabinetLocation,
+        center: cabinetLocation,
             styles: getMapStyles(), // Custom theme
             mapTypeControl: true,
             streetViewControl: true,
@@ -185,22 +185,22 @@ async function initMap() {
     } catch (error) {
         console.log('Using fallback marker...');
         // Fallback to traditional marker
-        marker = new google.maps.Marker({
-            position: cabinetLocation,
-            map: map,
-            title: 'Cabinet Emmanuel Lainé - Ostéopathe',
-            icon: {
-                url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+    marker = new google.maps.Marker({
+        position: cabinetLocation,
+        map: map,
+        title: 'Cabinet Emmanuel Lainé - Ostéopathe',
+        icon: {
+            url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
                     <svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="25" cy="25" r="22" fill="#000000" stroke="#ffffff" stroke-width="3"/>
                         <path d="M25 10 L25 40 M15 25 L35 25" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
                         <text x="25" y="48" text-anchor="middle" fill="#000000" font-family="Arial" font-size="8" font-weight="bold">OSTÉO</text>
-                    </svg>
-                `),
+                </svg>
+            `),
                 scaledSize: new google.maps.Size(50, 50),
                 anchor: new google.maps.Point(25, 25)
-            }
-        });
+        }
+    });
     }
 
     // Info window
