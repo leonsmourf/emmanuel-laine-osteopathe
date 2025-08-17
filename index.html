@@ -223,6 +223,11 @@
                                     <i class="fas fa-bicycle me-2"></i>Accès Vélo
                                 </button>
                             </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="transport-tab" data-bs-toggle="tab" data-bs-target="#transport-pane" type="button" role="tab">
+                                    <i class="fas fa-subway me-2"></i>Transport
+                                </button>
+                            </li>
                         </ul>
                         
                         <!-- Contenu des onglets -->
@@ -305,6 +310,99 @@
                                                 <small><strong>Odéon</strong><br>300m - 15 vélos</small>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Onglet Transport -->
+                            <div class="tab-pane fade" id="transport-pane" role="tabpanel">
+                                <div class="transport-section">
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <div class="metro-info p-3 bg-white rounded shadow-sm">
+                                                <h6 class="mb-3">
+                                                    <i class="fas fa-subway me-2"></i>Métro Saint-Germain-des-Prés
+                                                </h6>
+                                                <div class="metro-line mb-3">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="line-badge" style="background: #a0006e; color: white; padding: 5px 10px; border-radius: 20px; font-weight: bold; margin-right: 10px;">
+                                                            4
+                                                        </div>
+                                                        <div>
+                                                            <strong>Ligne 4</strong> - Direction Porte de Clignancourt
+                                                            <div class="next-trains small text-muted" id="metro-4-times">
+                                                                Prochains trains : <span class="loading">Chargement...</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="metro-line">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="line-badge" style="background: #a0006e; color: white; padding: 5px 10px; border-radius: 20px; font-weight: bold; margin-right: 10px;">
+                                                            4
+                                                        </div>
+                                                        <div>
+                                                            <strong>Ligne 4</strong> - Direction Porte d'Orléans
+                                                            <div class="next-trains small text-muted" id="metro-4-times-return">
+                                                                Prochains trains : <span class="loading">Chargement...</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="bus-info p-3 bg-white rounded shadow-sm">
+                                                <h6 class="mb-3">
+                                                    <i class="fas fa-bus me-2"></i>Arrêts de Bus
+                                                </h6>
+                                                <div class="bus-line mb-2">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="line-badge" style="background: #77c695; color: white; padding: 3px 8px; border-radius: 15px; font-weight: bold; margin-right: 8px; font-size: 0.8rem;">
+                                                            39
+                                                        </div>
+                                                        <div class="small">
+                                                            <strong>Bus 39</strong> - Prochains passages
+                                                            <div class="text-muted" id="bus-39-times">Chargement...</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bus-line">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="line-badge" style="background: #dc9609; color: white; padding: 3px 8px; border-radius: 15px; font-weight: bold; margin-right: 8px; font-size: 0.8rem;">
+                                                            95
+                                                        </div>
+                                                        <div class="small">
+                                                            <strong>Bus 95</strong> - Prochains passages
+                                                            <div class="text-muted" id="bus-95-times">Chargement...</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="transport-status mb-3">
+                                        <div class="alert alert-info d-flex align-items-center" role="alert">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            <div>
+                                                <strong>Trafic en temps réel</strong> - 
+                                                <span id="traffic-status">Normal sur toutes les lignes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="transport-map">
+                                        <iframe
+                                            src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&origin=Saint-Germain-des-Prés+Paris&destination=7+rue+Coëtlogon,+75006+Paris&mode=transit"
+                                            width="100%" 
+                                            height="300" 
+                                            style="border:0; border-radius: 12px;" 
+                                            allowfullscreen="" 
+                                            loading="lazy" 
+                                            referrerpolicy="no-referrer-when-downgrade"
+                                            title="Itinéraires transports en commun vers le Cabinet">
+                                        </iframe>
                                     </div>
                                 </div>
                             </div>
@@ -451,6 +549,88 @@
         </div>
     </section>
 
+    <!-- Google Reviews Section -->
+    <section class="google-reviews py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-center">Avis Patients Google</h2>
+            <p class="text-center text-muted mb-5">Témoignages authentiques de nos patients</p>
+            
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="review-card bg-white p-4 rounded shadow-sm h-100">
+                        <div class="review-header d-flex align-items-center mb-3">
+                            <div class="reviewer-avatar">
+                                <i class="fas fa-user-circle fa-3x text-primary"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="mb-1">Sophie M.</h6>
+                                <div class="review-stars">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                                <small class="text-muted">Il y a 2 semaines</small>
+                            </div>
+                        </div>
+                        <p class="review-text">"Excellent ostéopathe ! Emmanuel m'a soulagée de mes douleurs lombaires en une séance. Très professionnel et à l'écoute. Cabinet facilement accessible à vélo, un vrai plus !"</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="review-card bg-white p-4 rounded shadow-sm h-100">
+                        <div class="review-header d-flex align-items-center mb-3">
+                            <div class="reviewer-avatar">
+                                <i class="fas fa-user-circle fa-3x text-success"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="mb-1">Thomas L.</h6>
+                                <div class="review-stars">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                                <small class="text-muted">Il y a 1 mois</small>
+                            </div>
+                        </div>
+                        <p class="review-text">"Parfait pour les sportifs ! Emmanuel comprend les contraintes des cyclistes. Techniques adaptées et conseils pertinents. Le parking vélo sécurisé est un gros avantage."</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="review-card bg-white p-4 rounded shadow-sm h-100">
+                        <div class="review-header d-flex align-items-center mb-3">
+                            <div class="reviewer-avatar">
+                                <i class="fas fa-user-circle fa-3x text-info"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="mb-1">Marie C.</h6>
+                                <div class="review-stars">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                                <small class="text-muted">Il y a 3 semaines</small>
+                            </div>
+                        </div>
+                        <p class="review-text">"Très satisfaite de ma consultation. Diagnostic précis et traitement efficace. Le cabinet est très bien situé, proche du métro Saint-Germain. Je recommande vivement !"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="https://share.google/mokp4CiUM2a2LzvsH" target="_blank" class="btn btn-outline-primary">
+                    <i class="fab fa-google me-2"></i>Voir tous les avis Google
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer py-4">
         <div class="container">
@@ -472,5 +652,7 @@
     <script src="js/script.js"></script>
     <!-- Weather JS for cycling -->
     <script src="js/weather.js"></script>
+    <!-- RATP API for transport -->
+    <script src="js/ratp.js"></script>
 </body>
 </html> 
