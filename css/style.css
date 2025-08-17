@@ -403,6 +403,104 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* ===== GOOGLE BUSINESS CARD ===== */
+.google-business-card {
+    border: 1px solid #e9ecef;
+}
+
+.google-rating {
+    background: #f8f9fa !important;
+}
+
+.google-stars .fas.fa-star {
+    color: #ffc107;
+}
+
+.business-info .info-item {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 1rem;
+}
+
+.business-info .info-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.opening-hours {
+    font-family: 'Inter', sans-serif;
+}
+
+/* ===== BIKE FRIENDLY SECTION ===== */
+.bike-friendly-section .weather-widget {
+    border: 1px solid #e9ecef;
+}
+
+.bike-friendly-section .bike-info {
+    background: var(--primary-color) !important;
+}
+
+.bike-stations {
+    background: #fff !important;
+    border: 1px solid #e9ecef !important;
+}
+
+.weather-temp {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.weather-condition {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: capitalize;
+}
+
+/* ===== TABS STYLING ===== */
+.nav-tabs .nav-link {
+    color: var(--text-color);
+    border: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs .nav-link.active {
+    color: var(--primary-color);
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+    font-weight: 600;
+}
+
+.nav-tabs .nav-link:hover {
+    color: var(--primary-color);
+    border-color: #e9ecef #e9ecef #dee2e6;
+}
+
+/* ===== RESPONSIVE IMPROVEMENTS ===== */
+@media (max-width: 992px) {
+    .col-lg-6 {
+        margin-bottom: 2rem;
+    }
+    
+    .map-container iframe {
+        height: 350px !important;
+    }
+    
+    .google-business-card {
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .bike-friendly-section .col-md-6 {
+        margin-bottom: 1rem;
+    }
+    
+    .nav-tabs .nav-link {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
 /* ===== MAP ===== */
 .map-container {
     height: 400px;

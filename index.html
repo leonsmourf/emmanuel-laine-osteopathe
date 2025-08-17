@@ -71,7 +71,7 @@
                             <i class="fas fa-calendar-alt me-2"></i>Prendre RDV
                         </a>
                         <a href="#contact" class="btn btn-outline-light btn-lg">
-                            <i class="fas fa-phone me-2"></i>Nous contacter
+                            <i class="fas fa-phone me-2"></i>Contact
                         </a>
                     </div>
                 </div>
@@ -207,21 +207,107 @@
             
             <!-- Carte et informations détaillées -->
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="map-section">
                         <h4 class="mb-3"><i class="fas fa-map-marked-alt me-2"></i>Localisation du Cabinet</h4>
-                        <div class="map-container">
-                            <!-- Maps Embed API - 100% GRATUITE avec fiche Google Business -->
-                            <iframe
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&q=7+rue+Coëtlogon,+75006+Paris"
-                                width="100%" 
-                                height="450" 
-                                style="border:0; border-radius: 12px;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade"
-                                title="Cabinet Emmanuel Lainé - 7 rue Coëtlogon, 75006 Paris">
-                            </iframe>
+                        
+                        <!-- Onglets de navigation -->
+                        <ul class="nav nav-tabs mb-3" id="mapTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="location-tab" data-bs-toggle="tab" data-bs-target="#location-pane" type="button" role="tab">
+                                    <i class="fas fa-map-marker-alt me-2"></i>Localisation
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="bike-tab" data-bs-toggle="tab" data-bs-target="#bike-pane" type="button" role="tab">
+                                    <i class="fas fa-bicycle me-2"></i>Accès Vélo
+                                </button>
+                            </li>
+                        </ul>
+                        
+                        <!-- Contenu des onglets -->
+                        <div class="tab-content" id="mapTabsContent">
+                            <!-- Onglet Localisation -->
+                            <div class="tab-pane fade show active" id="location-pane" role="tabpanel">
+                                <div class="map-container">
+                                    <!-- Maps Embed API - 100% GRATUITE avec fiche Google Business -->
+                                    <iframe
+                                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&q=7+rue+Coëtlogon,+75006+Paris"
+                                        width="100%" 
+                                        height="400" 
+                                        style="border:0; border-radius: 12px;" 
+                                        allowfullscreen="" 
+                                        loading="lazy" 
+                                        referrerpolicy="no-referrer-when-downgrade"
+                                        title="Cabinet Emmanuel Lainé - 7 rue Coëtlogon, 75006 Paris">
+                                    </iframe>
+                                </div>
+                            </div>
+                            
+                            <!-- Onglet Vélo -->
+                            <div class="tab-pane fade" id="bike-pane" role="tabpanel">
+                                <div class="bike-friendly-section">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="weather-widget p-3 bg-light rounded">
+                                                <h6><i class="fas fa-cloud-sun me-2 text-primary"></i>Météo Cycliste</h6>
+                                                <div id="cycling-weather">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <span class="weather-temp">--°C</span>
+                                                        <span class="weather-condition">--</span>
+                                                    </div>
+                                                    <div class="small text-muted mt-1">
+                                                        <i class="fas fa-wind me-1"></i>Vent: <span id="wind-speed">--</span> km/h
+                                                    </div>
+                                                    <div class="cycling-advice mt-2">
+                                                        <small class="badge bg-success" id="cycling-status">Conditions idéales</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="bike-info p-3 bg-primary text-white rounded">
+                                                <h6><i class="fas fa-bicycle me-2"></i>Cabinet Bike-Friendly</h6>
+                                                <ul class="list-unstyled small mb-0">
+                                                    <li>✓ Parking vélos sécurisé</li>
+                                                    <li>✓ 3 stations Vélib' à proximité</li>
+                                                    <li>✓ Vestiaire disponible</li>
+                                                    <li>✓ Pistes cyclables protégées</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="map-container">
+                                        <!-- Carte cycliste avec pistes -->
+                                        <iframe
+                                            src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&origin=Châtelet+Paris&destination=7+rue+Coëtlogon,+75006+Paris&mode=bicycling"
+                                            width="100%" 
+                                            height="350" 
+                                            style="border:0; border-radius: 12px;" 
+                                            allowfullscreen="" 
+                                            loading="lazy" 
+                                            referrerpolicy="no-referrer-when-downgrade"
+                                            title="Itinéraires vélo vers le Cabinet">
+                                        </iframe>
+                                    </div>
+                                    
+                                    <div class="bike-stations mt-3 p-3 bg-white rounded border">
+                                        <h6><i class="fas fa-map-pin me-2 text-success"></i>Stations Vélib' Proches</h6>
+                                        <div class="row">
+                                            <div class="col-4 text-center">
+                                                <small><strong>St-Germain</strong><br>50m - 12 vélos</small>
+                                            </div>
+                                            <div class="col-4 text-center">
+                                                <small><strong>Mabillon</strong><br>200m - 8 vélos</small>
+                                            </div>
+                                            <div class="col-4 text-center">
+                                                <small><strong>Odéon</strong><br>300m - 15 vélos</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="map-info mt-3 p-3 bg-white rounded">
                             <div class="row">
@@ -245,32 +331,119 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="appointment-sidebar">
-                        <div class="appointment-card p-4 bg-white rounded shadow-sm mb-4">
-                            <h4 class="text-center mb-3"><i class="fas fa-calendar-check me-2 text-primary"></i>Réservation</h4>
-                            <p class="text-center text-muted mb-4">Consultation sur rendez-vous uniquement</p>
-                            <div class="d-grid gap-2">
-                                <a href="https://www.doctolib.fr/osteopathe/paris/emmanuel-laine" 
-                                   target="_blank" 
-                                   class="btn doctolib-btn btn-lg">
-                                    <i class="fas fa-laptop me-2"></i>Prendre RDV en ligne
-                                </a>
-                                <a href="tel:0767723994" class="btn btn-outline-primary">
-                                    <i class="fas fa-phone me-2"></i>Appeler le cabinet
-                                </a>
+                <div class="col-lg-6">
+                    <div class="google-business-section">
+                        <!-- Fiche Google Business -->
+                        <div class="google-business-card bg-white rounded shadow-sm p-4 mb-4">
+                            <h4 class="mb-3"><i class="fab fa-google me-2 text-primary"></i>Fiche Google Business</h4>
+                            
+                            <!-- Avis et Note Google -->
+                            <div class="google-rating mb-3 p-3 bg-light rounded">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <div class="google-stars mb-1">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <span class="ms-2 fw-bold">5.0</span>
+                                        </div>
+                                        <small class="text-muted">Basé sur les avis Google</small>
+                                    </div>
+                                    <div class="text-end">
+                                        <a href="https://share.google/mokp4CiUM2a2LzvsH" target="_blank" class="btn btn-outline-primary btn-sm">
+                                            <i class="fab fa-google me-1"></i>Voir sur Google
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Informations du cabinet -->
+                            <div class="business-info">
+                                <div class="info-item d-flex align-items-start mb-3">
+                                    <i class="fas fa-clock text-primary me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="mb-1">Horaires d'ouverture</h6>
+                                        <div class="opening-hours small">
+                                            <div class="d-flex justify-content-between">
+                                                <span>Lundi - Vendredi</span>
+                                                <span class="text-success fw-bold">8h00 - 20h00</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span>Samedi</span>
+                                                <span class="text-success fw-bold">9h00 - 17h00</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span>Dimanche</span>
+                                                <span class="text-danger">Fermé</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item d-flex align-items-start mb-3">
+                                    <i class="fas fa-phone text-primary me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="mb-1">Téléphone</h6>
+                                        <a href="tel:0767723994" class="fw-bold text-decoration-none">07 67 72 39 94</a>
+                                        <div class="small text-muted">Cliquez pour appeler</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="info-item d-flex align-items-start mb-3">
+                                    <i class="fas fa-map-marker-alt text-primary me-3 mt-1"></i>
+                                    <div>
+                                        <h6 class="mb-1">Adresse</h6>
+                                        <div>7 rue Coëtlogon<br>75006 Paris</div>
+                                        <small class="text-muted">Saint-Germain-des-Prés</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Actions rapides -->
+                            <div class="quick-actions mt-4">
+                                <div class="d-grid gap-2">
+                                    <a href="https://www.doctolib.fr/osteopathe/paris/emmanuel-laine" 
+                                       target="_blank" 
+                                       class="btn doctolib-btn">
+                                        <i class="fas fa-calendar-check me-2"></i>Réserver sur Doctolib
+                                    </a>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <a href="tel:0767723994" class="btn btn-outline-primary w-100">
+                                                <i class="fas fa-phone me-1"></i>Appeler
+                                            </a>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="mailto:emmanuel.laine@icloud.com" class="btn btn-outline-secondary w-100">
+                                                <i class="fas fa-envelope me-1"></i>Email
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="info-card p-4 bg-primary text-white rounded">
-                            <h5 class="mb-3"><i class="fas fa-info-circle me-2"></i>Informations pratiques</h5>
-                            <ul class="list-unstyled small">
-                                <li class="mb-2">✓ Consultation sans ordonnance</li>
-                                <li class="mb-2">✓ Remboursement mutuelle</li>
-                                <li class="mb-2">✓ Paiement CB/espèces/chèque</li>
-                                <li class="mb-2">✓ Tarif : 80€ la séance</li>
-                                <li class="mb-0">✓ Durée : 45-60 minutes</li>
-                            </ul>
+                        <!-- Informations pratiques -->
+                        <div class="practical-info p-4 bg-primary text-white rounded">
+                            <h5 class="mb-3"><i class="fas fa-info-circle me-2"></i>Informations Pratiques</h5>
+                            <div class="row">
+                                <div class="col-6">
+                                    <ul class="list-unstyled small">
+                                        <li class="mb-2">✓ Sans ordonnance</li>
+                                        <li class="mb-2">✓ Remboursement mutuelle</li>
+                                        <li class="mb-2">✓ Tarif : 80€</li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <ul class="list-unstyled small">
+                                        <li class="mb-2">✓ Durée : 45-60min</li>
+                                        <li class="mb-2">✓ CB/Espèces/Chèque</li>
+                                        <li class="mb-2">✓ Parking vélos</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -297,5 +470,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="js/script.js"></script>
+    <!-- Weather JS for cycling -->
+    <script src="js/weather.js"></script>
 </body>
 </html> 
