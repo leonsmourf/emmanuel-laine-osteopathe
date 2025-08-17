@@ -274,9 +274,7 @@
                                             <div class="bike-info p-3 bg-primary text-white rounded">
                                                 <h6><i class="fas fa-bicycle me-2"></i>Cabinet Bike-Friendly</h6>
                                                 <ul class="list-unstyled small mb-0">
-                                                    <li>✓ Parking vélos sécurisé</li>
                                                     <li>✓ 3 stations Vélib' à proximité</li>
-                                                    <li>✓ Vestiaire disponible</li>
                                                     <li>✓ Pistes cyclables protégées</li>
                                                 </ul>
                                             </div>
@@ -284,16 +282,17 @@
                                     </div>
                                     
                                     <div class="map-container">
-                                        <!-- Carte cycliste avec pistes -->
+                                        <h6 class="mb-3"><i class="fas fa-bicycle me-2"></i>Stations Vélib' & Pistes Cyclables</h6>
+                                        <!-- Carte des stations Vélib' et pistes cyclables -->
                                         <iframe
-                                            src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&origin=Châtelet+Paris&destination=7+rue+Coëtlogon,+75006+Paris&mode=bicycling"
+                                            src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&q=station+vélib+piste+cyclable+près+7+rue+Coëtlogon+75006+Paris&center=48.8475,2.3322&zoom=16"
                                             width="100%" 
                                             height="350" 
                                             style="border:0; border-radius: 12px;" 
                                             allowfullscreen="" 
                                             loading="lazy" 
                                             referrerpolicy="no-referrer-when-downgrade"
-                                            title="Itinéraires vélo vers le Cabinet">
+                                            title="Stations Vélib' et pistes cyclables autour du Cabinet">
                                         </iframe>
                                     </div>
                                     
@@ -416,13 +415,13 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
                                     
                                     <div class="transport-status mb-3">
                                         <div class="alert alert-info d-flex align-items-center" role="alert">
                                             <i class="fas fa-info-circle me-2"></i>
-                                            <div>
+                            <div>
                                                 <strong>Trafic en temps réel</strong> - 
                                                 <span id="traffic-status">Normal sur toutes les lignes</span>
                                             </div>
@@ -430,16 +429,16 @@
                                     </div>
                                     
                                     <div class="transport-map">
-                                        <h6 class="mb-3"><i class="fas fa-route me-2"></i>Itinéraire depuis Sèvres Babylone</h6>
+                                        <h6 class="mb-3"><i class="fas fa-map me-2"></i>Stations Métro & Bus - Zone Cabinet</h6>
                                         <iframe
-                                            src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&origin=Sèvres+Babylone+Paris&destination=7+rue+Coëtlogon,+75006+Paris&mode=walking"
+                                            src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&q=station+métro+bus+près+7+rue+Coëtlogon+75006+Paris&center=48.8475,2.3322&zoom=16"
                                             width="100%" 
                                             height="300" 
                                             style="border:0; border-radius: 12px;" 
                                             allowfullscreen="" 
                                             loading="lazy" 
                                             referrerpolicy="no-referrer-when-downgrade"
-                                            title="Itinéraire à pied depuis Sèvres Babylone vers le Cabinet">
+                                            title="Stations métro et bus autour du Cabinet">
                                         </iframe>
                                     </div>
                                 </div>
@@ -575,8 +574,7 @@
                                 <div class="col-6">
                                     <ul class="list-unstyled small">
                                         <li class="mb-2">✓ Durée : 45-60min</li>
-                                        <li class="mb-2">✓ CB/Espèces/Chèque</li>
-                                        <li class="mb-2">✓ Parking vélos</li>
+                                        <li class="mb-2">✓ CB/Espèces</li>
                                     </ul>
                                 </div>
                             </div>
@@ -594,71 +592,74 @@
             <p class="text-center text-muted mb-5">Témoignages authentiques de nos patients</p>
             
             <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="review-card bg-white p-4 rounded shadow-sm h-100">
-                        <div class="review-header d-flex align-items-center mb-3">
-                            <div class="reviewer-avatar">
-                                <i class="fas fa-user-circle fa-3x text-primary"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="mb-1">Sophie M.</h6>
-                                <div class="review-stars">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
+                                        <div class="col-lg-4 mb-4">
+                            <div class="review-card bg-white p-4 rounded shadow-sm h-100">
+                                <div class="review-header d-flex align-items-center mb-3">
+                                    <div class="reviewer-avatar">
+                                        <i class="fas fa-user-circle fa-3x text-primary"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-1">Lea Benet</h6>
+                                        <div class="review-stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                        </div>
+                                        <small class="text-muted">Il y a un mois</small>
+                                    </div>
                                 </div>
-                                <small class="text-muted">Il y a 2 semaines</small>
+                                <p class="review-text">"Je recommande docteur Lainé à 200%. Il vous explique ce qu'il fait tout au long de la séance, on ressent vraiment qu'il est passionné et très positif, c'est très agréable. Je suis arrivée avec des petits blocages ici et là et à la fin de la séance tout allait mieux. Merci beaucoup !"</p>
+                                <small class="text-muted">Visité en juin</small>
                             </div>
                         </div>
-                        <p class="review-text">"Excellent ostéopathe ! Emmanuel m'a soulagée de mes douleurs lombaires en une séance. Très professionnel et à l'écoute. Cabinet facilement accessible à vélo, un vrai plus !"</p>
-                    </div>
-                </div>
                 
-                <div class="col-lg-4 mb-4">
-                    <div class="review-card bg-white p-4 rounded shadow-sm h-100">
-                        <div class="review-header d-flex align-items-center mb-3">
-                            <div class="reviewer-avatar">
-                                <i class="fas fa-user-circle fa-3x text-success"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="mb-1">Thomas L.</h6>
-                                <div class="review-stars">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
+                                        <div class="col-lg-4 mb-4">
+                            <div class="review-card bg-white p-4 rounded shadow-sm h-100">
+                                <div class="review-header d-flex align-items-center mb-3">
+                                    <div class="reviewer-avatar">
+                                        <i class="fas fa-user-circle fa-3x text-success"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-1">Juliette Merck</h6>
+                                        <div class="review-stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                        </div>
+                                        <small class="text-muted">Il y a un mois</small>
+                                    </div>
                                 </div>
-                                <small class="text-muted">Il y a 1 mois</small>
+                                <p class="review-text">"Ultra gentil et attentif, écoute et explique tout en profondeur, donc les soins font 'travail d'équipe' ce qui est très agréable et rassurant. Précision chirurgicale dans ses gestes, on se sent en d'excellentes mains. Je recommande les yeux fermés."</p>
+                                <small class="text-muted">Visité en juillet</small>
                             </div>
                         </div>
-                        <p class="review-text">"Parfait pour les sportifs ! Emmanuel comprend les contraintes des cyclistes. Techniques adaptées et conseils pertinents. Le parking vélo sécurisé est un gros avantage."</p>
-                    </div>
-                </div>
                 
-                <div class="col-lg-4 mb-4">
-                    <div class="review-card bg-white p-4 rounded shadow-sm h-100">
-                        <div class="review-header d-flex align-items-center mb-3">
-                            <div class="reviewer-avatar">
-                                <i class="fas fa-user-circle fa-3x text-info"></i>
-                            </div>
-                            <div class="ms-3">
-                                <h6 class="mb-1">Marie C.</h6>
-                                <div class="review-stars">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
+                                        <div class="col-lg-4 mb-4">
+                            <div class="review-card bg-white p-4 rounded shadow-sm h-100">
+                                <div class="review-header d-flex align-items-center mb-3">
+                                    <div class="reviewer-avatar">
+                                        <i class="fas fa-user-circle fa-3x text-info"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <h6 class="mb-1">Olivier Penuenne</h6>
+                                        <div class="review-stars">
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                            <i class="fas fa-star text-warning"></i>
+                                        </div>
+                                        <small class="text-muted">Il y a un mois</small>
+                                    </div>
                                 </div>
-                                <small class="text-muted">Il y a 3 semaines</small>
+                                <p class="review-text">"Premier rendez-vous. Temps d'échanges avant le début de la séance. Échanges et explications pendant la séance. Conseils après la séance pour préparer la prochaine."</p>
+                                <small class="text-muted">Visité en juillet</small>
                             </div>
                         </div>
-                        <p class="review-text">"Très satisfaite de ma consultation. Diagnostic précis et traitement efficace. Le cabinet est très bien situé, proche du métro Saint-Germain. Je recommande vivement !"</p>
-                    </div>
-                </div>
             </div>
             
             <div class="text-center mt-4">

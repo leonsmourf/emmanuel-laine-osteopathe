@@ -71,7 +71,7 @@ async function loadMetroSchedules() {
                         const schedulesA = responseA.ok ? (await responseA.json()).result.schedules : [];
                         const schedulesR = responseR.ok ? (await responseR.json()).result.schedules : [];
                         
-                        displayStationSchedules(station, line, [...schedulesA, ...schedulesR]);
+                        displayStationSchedules(station, line, schedulesA, schedulesR);
                     })
                 );
             }
@@ -85,31 +85,39 @@ async function loadMetroSchedules() {
 }
 
 // Afficher les horaires pour une station
-function displayStationSchedules(station, line, schedules) {
+function displayStationSchedules(station, line, schedulesA, schedulesR) {
     const stationKey = station.name.replace(/\+/g, '-');
     const elementId = stationKey + '-times';
     const element = document.getElementById(elementId);
     
-    if (element && schedules.length > 0) {
-        // Trier par temps d'attente
-        const sortedSchedules = schedules
-            .filter(s => s.message && !s.message.includes('Train à l\'arrêt'))
-            .sort((a, b) => {
-                const timeA = getTimeInMinutes(a);
-                const timeB = getTimeInMinutes(b);
-                return timeA - timeB;
-            });
-            
-        if (sortedSchedules.length > 0) {
-            const nextTrains = sortedSchedules.slice(0, 3).map(schedule => 
+    if (element) {
+        let htmlContent = '';
+        
+        // Direction A
+        if (schedulesA && schedulesA.length > 0) {
+            const nextTrainsA = schedulesA.slice(0, 2).map(schedule => 
                 getTimeString(schedule)
             );
-            
-            // Accumulation pour les multiples lignes
-            const currentContent = element.innerHTML.includes('L') ? element.innerHTML + ' | ' : '';
-            element.innerHTML = currentContent + `L${line}: ${nextTrains.join(', ')}`;
-            element.classList.remove('loading');
+            htmlContent += `L${line}→ ${nextTrainsA.join(', ')}`;
         }
+        
+        // Direction R
+        if (schedulesR && schedulesR.length > 0) {
+            const nextTrainsR = schedulesR.slice(0, 2).map(schedule => 
+                getTimeString(schedule)
+            );
+            if (htmlContent) htmlContent += '<br>';
+            htmlContent += `L${line}← ${nextTrainsR.join(', ')}`;
+        }
+        
+        // Si on a déjà du contenu pour d'autres lignes, on l'ajoute
+        if (element.innerHTML.includes('L') && !element.innerHTML.includes('Chargement')) {
+            element.innerHTML += '<br>' + htmlContent;
+        } else {
+            element.innerHTML = htmlContent;
+        }
+        
+        element.classList.remove('loading');
     }
 }
 
@@ -225,14 +233,14 @@ function getTimeInMinutes(schedule) {
 
 // Affichages de secours
 function displayMetroFallback() {
-    // Fallback pour les 3 stations
+    // Fallback pour les 3 stations avec 2 directions
     const sevresElement = document.getElementById('sevres-babylone-times');
     const saintSulpiceElement = document.getElementById('saint-sulpice-times');
     const rennesElement = document.getElementById('rennes-times');
     
-    if (sevresElement) sevresElement.innerHTML = 'L10: 3 min, L12: 5 min';
-    if (saintSulpiceElement) saintSulpiceElement.innerHTML = 'L4: 2 min, 8 min';
-    if (rennesElement) rennesElement.innerHTML = 'L12: 4 min, 11 min';
+    if (sevresElement) sevresElement.innerHTML = 'L10→ 3min, 8min<br>L10← 5min, 12min<br>L12→ 2min, 7min<br>L12← 4min, 11min';
+    if (saintSulpiceElement) saintSulpiceElement.innerHTML = 'L4→ 2min, 6min<br>L4← 4min, 9min';
+    if (rennesElement) rennesElement.innerHTML = 'L12→ 3min, 8min<br>L12← 5min, 12min';
 }
 
 function displayBusFallback() {

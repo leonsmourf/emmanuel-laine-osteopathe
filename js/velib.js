@@ -21,20 +21,34 @@ document.addEventListener('DOMContentLoaded', function() {
 // Charger les stations Vélib' proches
 async function loadVelibStations() {
     try {
-        // API call avec géofiltrage pour stations proches
+        console.log('🚲 Chargement stations Vélib\'...');
+        
+        // Utiliser un timeout pour éviter les blocages
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 secondes max
+        
         const response = await fetch(
-            `${VELIB_API_BASE}?geofilter.distance=${CABINET_LAT},${CABINET_LON},${SEARCH_RADIUS}&rows=10&sort=dist`
+            `${VELIB_API_BASE}?rows=20&geofilter.distance=${CABINET_LAT}%2C${CABINET_LON}%2C${SEARCH_RADIUS}`,
+            { 
+                signal: controller.signal,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            }
         );
+        
+        clearTimeout(timeoutId);
         
         if (response.ok) {
             const data = await response.json();
-            displayVelibStations(data.records);
-            updateVelibMap(data.records);
+            console.log('✅ Stations Vélib\' chargées:', data.records?.length || 0);
+            displayVelibStations(data.records || []);
         } else {
-            throw new Error('API Vélib\' non disponible');
+            throw new Error(`API Vélib\' erreur: ${response.status}`);
         }
     } catch (error) {
-        console.warn('Stations Vélib\' non disponibles:', error);
+        console.warn('⚠️ Stations Vélib\' non disponibles:', error.message);
         displayVelibFallback();
     }
 }
