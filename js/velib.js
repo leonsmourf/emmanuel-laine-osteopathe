@@ -10,15 +10,19 @@ const SEARCH_RADIUS = 500; // 500m autour du cabinet
 
 // Initialisation des stations Vélib' (données fixes)
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚲 Initialisation Vélib\'...');
+    
+    // Afficher immédiatement les stations
+    displayVelibStationsFixed();
+    
+    // Re-afficher quand on clique sur l'onglet vélo
     const bikeTab = document.getElementById('bike-tab');
     if (bikeTab) {
         bikeTab.addEventListener('click', function() {
+            console.log('🚲 Clic onglet vélo - Réaffichage stations');
             displayVelibStationsFixed();
         });
     }
-    
-    // Afficher directement les stations au chargement
-    displayVelibStationsFixed();
 });
 
 // Afficher les stations Vélib' fixes (plus fiable)
