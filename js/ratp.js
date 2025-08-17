@@ -3,9 +3,12 @@
 // Configuration API RATP (GRATUITE - illimitée)
 const RATP_API_BASE = 'https://api-ratp.pierre-grimaud.fr/v4';
 
-// Station et lignes du cabinet
-const METRO_STATION = 'saint+germain+des+pres';
-const METRO_LINE = '4';
+// Stations les plus proches du cabinet
+const METRO_STATIONS = [
+    { name: 'sevres+babylone', lines: ['10', '12'], displayName: 'Sèvres Babylone' },
+    { name: 'saint+sulpice', lines: ['4'], displayName: 'Saint Sulpice' },
+    { name: 'rennes', lines: ['12'], displayName: 'Rennes' }
+];
 const BUS_LINES = ['39', '95'];
 
 // Initialisation de l'API RATP
@@ -37,23 +40,18 @@ async function loadRATPData() {
 // Charger les horaires de métro
 async function loadMetroSchedules() {
     try {
-        // Direction A (Porte de Clignancourt)
-        const scheduleA = await fetch(
-            `${RATP_API_BASE}/schedules/metros/${METRO_LINE}/${METRO_STATION}/A`
-        );
-        
-        // Direction R (Porte d'Orléans) 
-        const scheduleR = await fetch(
-            `${RATP_API_BASE}/schedules/metros/${METRO_LINE}/${METRO_STATION}/R`
-        );
-        
-        if (scheduleA.ok && scheduleR.ok) {
-            const dataA = await scheduleA.json();
-            const dataR = await scheduleR.json();
-            
-            displayMetroSchedules(dataA.result.schedules, dataR.result.schedules);
-        } else {
-            throw new Error('Erreur horaires métro');
+        for (const station of METRO_STATIONS) {
+            // Pour chaque ligne de la station
+            for (const line of station.lines) {
+                const scheduleResponse = await fetch(
+                    `${RATP_API_BASE}/schedules/metros/${line}/${station.name}/A`
+                );
+                
+                if (scheduleResponse.ok) {
+                    const data = await scheduleResponse.json();
+                    displayStationSchedules(station, line, data.result.schedules);
+                }
+            }
         }
     } catch (error) {
         console.warn('Horaires métro non disponibles:', error);
@@ -61,33 +59,30 @@ async function loadMetroSchedules() {
     }
 }
 
-// Afficher les horaires de métro
-function displayMetroSchedules(schedulesA, schedulesR) {
-    // Direction Porte de Clignancourt
-    const metroTimesA = document.getElementById('metro-4-times');
-    if (metroTimesA && schedulesA.length > 0) {
-        const nextTrains = schedulesA.slice(0, 3).map(schedule => 
-            schedule.message || `${schedule.destination} - ${getTimeString(schedule)}`
-        );
-        metroTimesA.innerHTML = nextTrains.join(', ');
-    }
+// Afficher les horaires pour une station
+function displayStationSchedules(station, line, schedules) {
+    const stationKey = station.name.replace(/\+/g, '-');
+    const elementId = stationKey + '-times';
+    const element = document.getElementById(elementId);
     
-    // Direction Porte d'Orléans
-    const metroTimesR = document.getElementById('metro-4-times-return');
-    if (metroTimesR && schedulesR.length > 0) {
-        const nextTrains = schedulesR.slice(0, 3).map(schedule => 
-            schedule.message || `${schedule.destination} - ${getTimeString(schedule)}`
+    if (element && schedules.length > 0) {
+        const nextTrains = schedules.slice(0, 2).map(schedule => 
+            getTimeString(schedule)
         );
-        metroTimesR.innerHTML = nextTrains.join(', ');
+        element.innerHTML = `L${line}: ${nextTrains.join(', ')}`;
+        element.classList.remove('loading');
     }
 }
 
 // Charger les horaires de bus
 async function loadBusSchedules() {
     try {
+        // Utiliser Sèvres Babylone comme référence pour les bus
+        const busStation = 'sevres+babylone';
+        
         for (const busLine of BUS_LINES) {
             const response = await fetch(
-                `${RATP_API_BASE}/schedules/bus/${busLine}/${METRO_STATION}/A`
+                `${RATP_API_BASE}/schedules/bus/${busLine}/${busStation}/A`
             );
             
             if (response.ok) {
@@ -115,7 +110,8 @@ function displayBusSchedules(line, schedules) {
 // Charger le statut du trafic
 async function loadTrafficStatus() {
     try {
-        const response = await fetch(`${RATP_API_BASE}/traffic/metros/${METRO_LINE}`);
+        // Vérifier le trafic pour les principales lignes
+        const response = await fetch(`${RATP_API_BASE}/traffic/metros`);
         
         if (response.ok) {
             const data = await response.json();
@@ -167,11 +163,14 @@ function getTimeString(schedule) {
 
 // Affichages de secours
 function displayMetroFallback() {
-    const metroTimesA = document.getElementById('metro-4-times');
-    const metroTimesR = document.getElementById('metro-4-times-return');
+    // Fallback pour les 3 stations
+    const sevresElement = document.getElementById('sevres-babylone-times');
+    const saintSulpiceElement = document.getElementById('saint-sulpice-times');
+    const rennesElement = document.getElementById('rennes-times');
     
-    if (metroTimesA) metroTimesA.innerHTML = '3 min, 7 min, 12 min';
-    if (metroTimesR) metroTimesR.innerHTML = '2 min, 8 min, 15 min';
+    if (sevresElement) sevresElement.innerHTML = 'L10: 3 min, L12: 5 min';
+    if (saintSulpiceElement) saintSulpiceElement.innerHTML = 'L4: 2 min, 8 min';
+    if (rennesElement) rennesElement.innerHTML = 'L12: 4 min, 11 min';
 }
 
 function displayBusFallback() {

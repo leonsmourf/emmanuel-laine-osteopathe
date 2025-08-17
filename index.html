@@ -321,30 +321,69 @@
                                         <div class="col-md-6">
                                             <div class="metro-info p-3 bg-white rounded shadow-sm">
                                                 <h6 class="mb-3">
-                                                    <i class="fas fa-subway me-2"></i>Métro Saint-Germain-des-Prés
+                                                    <i class="fas fa-subway me-2"></i>Stations Métro les Plus Proches
                                                 </h6>
-                                                <div class="metro-line mb-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="line-badge" style="background: #a0006e; color: white; padding: 5px 10px; border-radius: 20px; font-weight: bold; margin-right: 10px;">
-                                                            4
+                                                
+                                                <!-- Sèvres Babylone -->
+                                                <div class="metro-line mb-2">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="d-flex me-2">
+                                                                <div class="line-badge me-1" style="background: #dc9609; color: white; padding: 3px 8px; border-radius: 15px; font-weight: bold; font-size: 0.8rem;">
+                                                                    10
+                                                                </div>
+                                                                <div class="line-badge" style="background: #00643c; color: white; padding: 3px 8px; border-radius: 15px; font-weight: bold; font-size: 0.8rem;">
+                                                                    12
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <strong>Sèvres Babylone</strong>
+                                                                <div class="small text-muted">3 min à pied</div>
+                                                            </div>
                                                         </div>
-                                                        <div>
-                                                            <strong>Ligne 4</strong> - Direction Porte de Clignancourt
-                                                            <div class="next-trains small text-muted" id="metro-4-times">
-                                                                Prochains trains : <span class="loading">Chargement...</span>
+                                                        <div class="text-end">
+                                                            <div class="next-trains small text-success" id="sevres-babylone-times">
+                                                                <span class="loading">Chargement...</span>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="metro-line">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="line-badge" style="background: #a0006e; color: white; padding: 5px 10px; border-radius: 20px; font-weight: bold; margin-right: 10px;">
-                                                            4
+                                                
+                                                <!-- Saint Sulpice -->
+                                                <div class="metro-line mb-2">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="line-badge me-2" style="background: #a0006e; color: white; padding: 3px 8px; border-radius: 15px; font-weight: bold; font-size: 0.8rem;">
+                                                                4
+                                                            </div>
+                                                            <div>
+                                                                <strong>Saint Sulpice</strong>
+                                                                <div class="small text-muted">5 min à pied</div>
+                                                            </div>
                                                         </div>
-                                                        <div>
-                                                            <strong>Ligne 4</strong> - Direction Porte d'Orléans
-                                                            <div class="next-trains small text-muted" id="metro-4-times-return">
-                                                                Prochains trains : <span class="loading">Chargement...</span>
+                                                        <div class="text-end">
+                                                            <div class="next-trains small text-success" id="saint-sulpice-times">
+                                                                <span class="loading">Chargement...</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Rennes -->
+                                                <div class="metro-line">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="line-badge me-2" style="background: #00643c; color: white; padding: 3px 8px; border-radius: 15px; font-weight: bold; font-size: 0.8rem;">
+                                                                12
+                                                            </div>
+                                                            <div>
+                                                                <strong>Rennes</strong>
+                                                                <div class="small text-muted">7 min à pied</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-end">
+                                                            <div class="next-trains small text-success" id="rennes-times">
+                                                                <span class="loading">Chargement...</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -393,15 +432,16 @@
                                     </div>
                                     
                                     <div class="transport-map">
+                                        <h6 class="mb-3"><i class="fas fa-route me-2"></i>Itinéraire depuis Sèvres Babylone</h6>
                                         <iframe
-                                            src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&origin=Saint-Germain-des-Prés+Paris&destination=7+rue+Coëtlogon,+75006+Paris&mode=transit"
+                                            src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&origin=Sèvres+Babylone+Paris&destination=7+rue+Coëtlogon,+75006+Paris&mode=walking"
                                             width="100%" 
                                             height="300" 
                                             style="border:0; border-radius: 12px;" 
                                             allowfullscreen="" 
                                             loading="lazy" 
                                             referrerpolicy="no-referrer-when-downgrade"
-                                            title="Itinéraires transports en commun vers le Cabinet">
+                                            title="Itinéraire à pied depuis Sèvres Babylone vers le Cabinet">
                                         </iframe>
                                     </div>
                                 </div>
