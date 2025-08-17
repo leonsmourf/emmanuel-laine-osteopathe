@@ -37,20 +37,20 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#home">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#about">À propos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="faq.html">FAQ</a>
-                        </li>
-                    </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -171,44 +171,106 @@
     <!-- Contact Section -->
     <section id="contact" class="py-5 bg-light">
         <div class="container">
+            <h2 class="section-title">Contact & Localisation</h2>
+            
+            <!-- Informations de contact en grille -->
+            <div class="row mb-5">
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="contact-item text-center h-100">
+                        <i class="fas fa-map-marker-alt text-primary fs-2 mb-3"></i>
+                        <h5>Adresse du Cabinet</h5>
+                        <p><strong>7 rue Coëtlogon</strong><br>75006 Paris<br><small class="text-muted">Métro Saint-Germain-des-Prés</small></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="contact-item text-center h-100">
+                        <i class="fas fa-phone text-primary fs-2 mb-3"></i>
+                        <h5>Téléphone</h5>
+                        <p><a href="tel:0767723994" class="fw-bold">07 67 72 39 94</a><br><small class="text-muted">Répondeur 24h/24</small></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="contact-item text-center h-100">
+                        <i class="fas fa-envelope text-primary fs-2 mb-3"></i>
+                        <h5>Email</h5>
+                        <p><a href="mailto:emmanuel.laine@icloud.com">emmanuel.laine@icloud.com</a><br><small class="text-muted">Réponse sous 24h</small></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="contact-item text-center h-100">
+                        <i class="fas fa-clock text-primary fs-2 mb-3"></i>
+                        <h5>Horaires</h5>
+                        <p><strong>Lun-Ven :</strong> 8h-20h<br><strong>Sam :</strong> 9h-17h<br><strong>Dim :</strong> Fermé</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Carte et informations détaillées -->
             <div class="row">
-                <div class="col-lg-6">
-                    <h2 class="section-title">Contact</h2>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h5>Téléphone</h5>
-                                <p><a href="tel:0767723994">07 67 72 39 94</a></p>
-                            </div>
+                <div class="col-lg-8">
+                    <div class="map-section">
+                        <h4 class="mb-3"><i class="fas fa-map-marked-alt me-2"></i>Localisation du Cabinet</h4>
+                        <div class="map-container">
+                            <!-- Maps Embed API - 100% GRATUITE avec fiche Google Business -->
+                            <iframe
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30&q=7+rue+Coëtlogon,+75006+Paris"
+                                width="100%" 
+                                height="450" 
+                                style="border:0; border-radius: 12px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Cabinet Emmanuel Lainé - 7 rue Coëtlogon, 75006 Paris">
+                            </iframe>
                         </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h5>Email</h5>
-                                <p><a href="mailto:emmanuel.laine@icloud.com">emmanuel.laine@icloud.com</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h5>Adresse</h5>
-                                <p>7 rue Coëtlogon<br>75006 Paris</p>
+                        <div class="map-info mt-3 p-3 bg-white rounded">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-subway me-2 text-primary"></i>Transports</h6>
+                                    <ul class="list-unstyled small">
+                                        <li>• Métro : Saint-Germain-des-Prés (L4)</li>
+                                        <li>• Bus : Lignes 39, 95</li>
+                                        <li>• Vélib' : Station à 50m</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6><i class="fas fa-car me-2 text-primary"></i>Stationnement</h6>
+                                    <ul class="list-unstyled small">
+                                        <li>• Parking Indigo Saint-Germain</li>
+                                        <li>• Places payantes dans la rue</li>
+                                        <li>• Zone de livraison 19h-7h</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="map-container">
-                        <img src="https://maps.googleapis.com/maps/api/staticmap?center=7+rue+Coëtlogon,+75006+Paris&zoom=16&size=600x400&maptype=roadmap&markers=color:red%7C7+rue+Coëtlogon,+75006+Paris&key=AIzaSyCscVGufFzNODJbmT_DJyPY8JVXjOPtA30" 
-                             alt="Cabinet Emmanuel Lainé - 7 rue Coëtlogon, 75006 Paris"
-                             style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-                        <div class="map-overlay">
-                            <a href="https://maps.google.com/?q=7+rue+Coëtlogon,+75006+Paris" 
-                               target="_blank" 
-                               class="btn btn-primary btn-sm">
-                                <i class="fas fa-external-link-alt me-2"></i>Voir sur Google Maps
-                            </a>
+                <div class="col-lg-4">
+                    <div class="appointment-sidebar">
+                        <div class="appointment-card p-4 bg-white rounded shadow-sm mb-4">
+                            <h4 class="text-center mb-3"><i class="fas fa-calendar-check me-2 text-primary"></i>Réservation</h4>
+                            <p class="text-center text-muted mb-4">Consultation sur rendez-vous uniquement</p>
+                            <div class="d-grid gap-2">
+                                <a href="https://www.doctolib.fr/osteopathe/paris/emmanuel-laine" 
+                                   target="_blank" 
+                                   class="btn doctolib-btn btn-lg">
+                                    <i class="fas fa-laptop me-2"></i>Prendre RDV en ligne
+                                </a>
+                                <a href="tel:0767723994" class="btn btn-outline-primary">
+                                    <i class="fas fa-phone me-2"></i>Appeler le cabinet
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card p-4 bg-primary text-white rounded">
+                            <h5 class="mb-3"><i class="fas fa-info-circle me-2"></i>Informations pratiques</h5>
+                            <ul class="list-unstyled small">
+                                <li class="mb-2">✓ Consultation sans ordonnance</li>
+                                <li class="mb-2">✓ Remboursement mutuelle</li>
+                                <li class="mb-2">✓ Paiement CB/espèces/chèque</li>
+                                <li class="mb-2">✓ Tarif : 80€ la séance</li>
+                                <li class="mb-0">✓ Durée : 45-60 minutes</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
