@@ -298,16 +298,11 @@
                                     </div>
                                     
                                     <div class="bike-stations mt-3 p-3 bg-white rounded border">
-                                        <h6><i class="fas fa-map-pin me-2 text-success"></i>Stations Vélib' Proches</h6>
-                                        <div class="row">
-                                            <div class="col-4 text-center">
-                                                <small><strong>St-Germain</strong><br>50m - 12 vélos</small>
-                                            </div>
-                                            <div class="col-4 text-center">
-                                                <small><strong>Mabillon</strong><br>200m - 8 vélos</small>
-                                            </div>
-                                            <div class="col-4 text-center">
-                                                <small><strong>Odéon</strong><br>300m - 15 vélos</small>
+                                        <div id="velib-stations-list">
+                                            <!-- Les stations Vélib' seront chargées ici par l'API -->
+                                            <div class="text-center text-muted">
+                                                <i class="fas fa-spinner fa-spin me-2"></i>
+                                                Chargement des stations Vélib'...
                                             </div>
                                         </div>
                                     </div>
@@ -320,9 +315,12 @@
                                     <div class="row mb-4">
                                         <div class="col-md-6">
                                             <div class="metro-info p-3 bg-white rounded shadow-sm">
-                                                <h6 class="mb-3">
-                                                    <i class="fas fa-subway me-2"></i>Stations Métro les Plus Proches
-                                                </h6>
+                                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                                    <h6 class="mb-0">
+                                                        <i class="fas fa-subway me-2"></i>Stations Métro les Plus Proches
+                                                    </h6>
+                                                    <small class="text-muted last-updated">Temps réel</small>
+                                                </div>
                                                 
                                                 <!-- Sèvres Babylone -->
                                                 <div class="metro-line mb-2">
@@ -694,5 +692,8 @@
     <script src="js/weather.js"></script>
     <!-- RATP API for transport -->
     <script src="js/ratp.js"></script>
+    
+    <!-- Vélib' API for bike stations -->
+    <script src="js/velib.js"></script>
 </body>
 </html> 

@@ -25,34 +25,59 @@ document.addEventListener('DOMContentLoaded', function() {
 // Charger toutes les données RATP
 async function loadRATPData() {
     try {
+        // Réinitialiser tous les éléments
+        clearPreviousData();
+        
         // Chargement parallèle des données
         await Promise.all([
             loadMetroSchedules(),
             loadBusSchedules(),
             loadTrafficStatus()
         ]);
+        
+        markAsUpdated();
     } catch (error) {
         console.warn('Erreur RATP API:', error);
         showRATPFallback();
     }
 }
 
+// Fonction pour nettoyer les données précédentes
+function clearPreviousData() {
+    // Réinitialiser les stations de métro
+    const sevresElement = document.getElementById('sevres-babylone-times');
+    const saintSulpiceElement = document.getElementById('saint-sulpice-times');
+    const rennesElement = document.getElementById('rennes-times');
+    
+    if (sevresElement) sevresElement.innerHTML = '<span class="loading">Chargement...</span>';
+    if (saintSulpiceElement) saintSulpiceElement.innerHTML = '<span class="loading">Chargement...</span>';
+    if (rennesElement) rennesElement.innerHTML = '<span class="loading">Chargement...</span>';
+}
+
 // Charger les horaires de métro
 async function loadMetroSchedules() {
     try {
+        const stationPromises = [];
+        
         for (const station of METRO_STATIONS) {
             // Pour chaque ligne de la station
             for (const line of station.lines) {
-                const scheduleResponse = await fetch(
-                    `${RATP_API_BASE}/schedules/metros/${line}/${station.name}/A`
-                );
+                // Direction A et R en parallèle
+                const promiseA = fetch(`${RATP_API_BASE}/schedules/metros/${line}/${station.name}/A`);
+                const promiseR = fetch(`${RATP_API_BASE}/schedules/metros/${line}/${station.name}/R`);
                 
-                if (scheduleResponse.ok) {
-                    const data = await scheduleResponse.json();
-                    displayStationSchedules(station, line, data.result.schedules);
-                }
+                stationPromises.push(
+                    Promise.all([promiseA, promiseR]).then(async ([responseA, responseR]) => {
+                        const schedulesA = responseA.ok ? (await responseA.json()).result.schedules : [];
+                        const schedulesR = responseR.ok ? (await responseR.json()).result.schedules : [];
+                        
+                        displayStationSchedules(station, line, [...schedulesA, ...schedulesR]);
+                    })
+                );
             }
         }
+        
+        await Promise.all(stationPromises);
     } catch (error) {
         console.warn('Horaires métro non disponibles:', error);
         displayMetroFallback();
@@ -66,11 +91,25 @@ function displayStationSchedules(station, line, schedules) {
     const element = document.getElementById(elementId);
     
     if (element && schedules.length > 0) {
-        const nextTrains = schedules.slice(0, 2).map(schedule => 
-            getTimeString(schedule)
-        );
-        element.innerHTML = `L${line}: ${nextTrains.join(', ')}`;
-        element.classList.remove('loading');
+        // Trier par temps d'attente
+        const sortedSchedules = schedules
+            .filter(s => s.message && !s.message.includes('Train à l\'arrêt'))
+            .sort((a, b) => {
+                const timeA = getTimeInMinutes(a);
+                const timeB = getTimeInMinutes(b);
+                return timeA - timeB;
+            });
+            
+        if (sortedSchedules.length > 0) {
+            const nextTrains = sortedSchedules.slice(0, 3).map(schedule => 
+                getTimeString(schedule)
+            );
+            
+            // Accumulation pour les multiples lignes
+            const currentContent = element.innerHTML.includes('L') ? element.innerHTML + ' | ' : '';
+            element.innerHTML = currentContent + `L${line}: ${nextTrains.join(', ')}`;
+            element.classList.remove('loading');
+        }
     }
 }
 
@@ -150,7 +189,11 @@ function displayTrafficStatus(traffic) {
 
 // Utilitaires
 function getTimeString(schedule) {
-    if (schedule.message && schedule.message !== 'Train à quai') {
+    if (schedule.message) {
+        // Format: "Train à quai" ou "1 mn" ou "2 mn" 
+        if (schedule.message.includes('Train') || schedule.message.includes('quai')) return 'À quai';
+        if (schedule.message.includes('mn')) return schedule.message.replace(' mn', 'min');
+        if (schedule.message.includes('Approche')) return 'Approche';
         return schedule.message;
     }
     
@@ -158,7 +201,26 @@ function getTimeString(schedule) {
         return 'À l\'approche';
     }
     
-    return schedule.code ? `${schedule.code} min` : 'Données indisponibles';
+    return schedule.code ? `${schedule.code} min` : 'N/A';
+}
+
+function getTimeInMinutes(schedule) {
+    if (!schedule.message && !schedule.code) return 999;
+    if (schedule.message && (schedule.message.includes('Train') || schedule.message.includes('quai'))) return 0;
+    if (schedule.message && schedule.message.includes('Approche')) return 1;
+    if (schedule.code === '0') return 1;
+    
+    if (schedule.message) {
+        const match = schedule.message.match(/(\d+)\s*mn/);
+        if (match) return parseInt(match[1]);
+    }
+    
+    if (schedule.code) {
+        const timeMatch = schedule.code.match(/(\d+)/);
+        if (timeMatch) return parseInt(timeMatch[1]);
+    }
+    
+    return 999;
 }
 
 // Affichages de secours
@@ -193,4 +255,29 @@ function showRATPFallback() {
     displayMetroFallback();
     displayBusFallback();
     displayTrafficFallback();
+}
+
+// ===== ACTUALISATION TEMPS RÉEL =====
+// Rafraîchir les données RATP toutes les 60 secondes
+setInterval(() => {
+    const transportTabActive = document.getElementById('transport-tab').classList.contains('active');
+    if (transportTabActive) {
+        console.log('🚇 Actualisation temps réel RATP...');
+        loadMetroSchedules();
+        loadBusSchedules();
+    }
+}, 60000); // 1 minute
+
+// Fonction pour marquer les éléments comme étant mis à jour
+function markAsUpdated() {
+    const timestamp = new Date().toLocaleTimeString('fr-FR', { 
+        hour: '2-digit', 
+        minute: '2-digit' 
+    });
+    
+    // Ajouter un indicateur discret de dernière mise à jour
+    const indicators = document.querySelectorAll('.last-updated');
+    indicators.forEach(indicator => {
+        indicator.textContent = `Mis à jour à ${timestamp}`;
+    });
 } 
