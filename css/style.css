@@ -498,33 +498,24 @@ h1, h2, h3, h4, h5, h6 {
     border-color: #e9ecef #e9ecef #dee2e6;
 }
 
-/* ===== GOOGLE REVIEWS SECTION ===== */
+/* ===== GOOGLE REVIEWS WIDGET ===== */
 .google-reviews {
     background: #f8f9fa !important;
 }
 
-.review-card {
-    border: 1px solid #e9ecef;
+.google-widget-container {
     transition: var(--transition);
+    border: 1px solid #e9ecef;
 }
 
-.review-card:hover {
+.google-widget-container:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
 }
 
-.reviewer-avatar i {
-    color: #e9ecef;
-}
-
-.review-stars .fas.fa-star {
-    color: #ffc107;
-}
-
-.review-text {
-    font-style: italic;
-    color: #666;
-    line-height: 1.6;
+.google-widget-container iframe {
+    border-radius: 8px;
+    width: 100%;
 }
 
 /* ===== TRANSPORT SECTION ===== */
