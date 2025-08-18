@@ -67,12 +67,14 @@
                         Approche thérapeutique manuelle et globale
                     </p>
                     <div class="hero-buttons">
-                        <a href="#appointment" class="btn btn-primary btn-lg me-3">
-                            <i class="fas fa-calendar-alt me-2"></i>Prendre RDV
-                        </a>
-                        <a href="#contact" class="btn btn-outline-light btn-lg">
-                            <i class="fas fa-phone me-2"></i>Contact
-                        </a>
+                        <div class="hero-buttons-container">
+                            <a href="#appointment" class="btn btn-primary btn-lg">
+                                <i class="fas fa-calendar-alt me-2"></i>Prendre RDV
+                            </a>
+                            <a href="#contact" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-phone me-2"></i>Contact
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -168,10 +170,81 @@
         </div>
     </section>
 
+    <!-- Section À propos d'Emmanuel Lainé -->
+    <section id="about-emmanuel" class="py-5">
+        <div class="container">
+            <h2 class="section-title">À Propos d'Emmanuel Lainé</h2>
+            
+            <div class="row align-items-center">
+                <!-- Photo -->
+                <div class="col-lg-4 mb-4">
+                    <div class="profile-image-container text-center">
+                        <img src="images/RO.jpeg" alt="Emmanuel Lainé, Ostéopathe D.O." class="profile-image img-fluid rounded-circle shadow">
+                    </div>
+                </div>
+                
+                <!-- Informations professionnelles -->
+                <div class="col-lg-8">
+                    
+                    <!-- Formation -->
+                    <div class="cv-section mb-4">
+                        <h4><i class="fas fa-graduation-cap text-primary me-2"></i>Formation & Diplômes</h4>
+                        <div class="cv-item">
+                            <div class="cv-year">2020</div>
+                            <div class="cv-content">
+                                <strong>Master STAPS</strong> - Biologie intégrative des adaptations à l'exercice<br>
+                                <small class="text-muted">Université d'Évry-Val-d'Essonne</small>
+                            </div>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-year">2019</div>
+                            <div class="cv-content">
+                                <strong>Diplôme d'Ostéopathe (D.O.)</strong><br>
+                                <small class="text-muted">École d'Ostéopathie de Paris (EO Paris)</small>
+                            </div>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-year">2017</div>
+                            <div class="cv-content">
+                                <strong>Taping et Strapping</strong><br>
+                                <small class="text-muted">Formation à Clairefontaine</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expérience -->
+                    <div class="cv-section">
+                        <h4><i class="fas fa-briefcase text-primary me-2"></i>Expérience Professionnelle</h4>
+                        <div class="cv-item">
+                            <div class="cv-year">2020-2023</div>
+                            <div class="cv-content">
+                                <strong>Ostéopathe en Cabinet Privé</strong> - Paris<br>
+                                <strong>Superviseur Clinique</strong> - EO Paris
+                            </div>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-year">2019</div>
+                            <div class="cv-content">
+                                <strong>Ostéopathe en Cabinet</strong> - Annecy
+                            </div>
+                        </div>
+                        <div class="cv-item">
+                            <div class="cv-year">2018-2019</div>
+                            <div class="cv-content">
+                                <strong>Stagiaire Hospitalier</strong><br>
+                                <small class="text-muted">CHR Orléans - Unité du rachis & Rhumatologie</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="py-5 bg-light">
         <div class="container">
-            <h2 class="section-title">Contact & Localisation</h2>
+                            <h2 class="section-title">Contact <span style="font-family: Arial, sans-serif;">&</span> Localisation</h2>
             
             <!-- Informations de contact en grille -->
             <div class="row mb-5">
@@ -362,29 +435,13 @@
                             <div class="tab-pane fade" id="bike-pane" role="tabpanel">
                                 <div class="bike-friendly-section">
                                     <div class="row mb-3">
-                                        <div class="col-md-6">
-                                            <div class="weather-widget p-3 bg-light rounded">
-                                                <h6><i class="fas fa-cloud-sun me-2 text-primary"></i>Météo Cycliste</h6>
-                                                <div id="cycling-weather">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <span class="weather-temp">--°C</span>
-                                                        <span class="weather-condition">--</span>
-                                                    </div>
-                                                    <div class="small text-muted mt-1">
-                                                        <i class="fas fa-wind me-1"></i>Vent: <span id="wind-speed">--</span> km/h
-                                                    </div>
-                                                    <div class="cycling-advice mt-2">
-                                                        <small class="badge bg-success" id="cycling-status">Conditions idéales</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
+
+                                        <div class="col-md-12">
                                             <div class="bike-info p-3 bg-primary text-white rounded">
                                                 <h6><i class="fas fa-bicycle me-2"></i>Cabinet Bike-Friendly</h6>
                                                 <ul class="list-unstyled small mb-0">
                                                     <li>✓ 3 stations Vélib' à proximité</li>
-                                                    <li>✓ Pistes cyclables</li>
+                                                    <li>✓ Pistes cyclables protégées</li>
                                                 </ul>
                                             </div>
                                         </div>
