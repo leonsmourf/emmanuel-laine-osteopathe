@@ -214,8 +214,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 350px;
     height: 350px;
     object-fit: cover;
-    object-position: 50% 15%;
-    transform: scale(0.75);
+    object-position: 50% 10%;
+    transform: scale(0.65);
     border: 6px solid var(--secondary-color);
     transition: var(--transition);
 }
